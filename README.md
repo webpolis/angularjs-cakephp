@@ -40,7 +40,7 @@ In our view we do:
 
 We initialized AngularJS (by taking required files from Google CDN).
 We set a 'bootstrap' file, which is located under app/webroot/js/angular/bootstrap.js.
-We have placed our AngularJs controller in the same folder, but we avoid the the '.js' extension 
+We have placed our AngularJs controller in the same folder, but we avoid the '.js' extension 
 and '_controller' suffix (for sake of simplicity, is the only filename change request i do).
 
 We then insert some AngularJs compatible markup code:
