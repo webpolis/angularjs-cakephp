@@ -99,7 +99,7 @@ go to your Cake's routes.php and add (if you don't have it :)
 
 <code>Router::parseExtensions();</code>
 
-So we can end by having the following "short" methods in our CakePHP controller:
+So we can end by having the following "short" methods in our CakePHP controller without requiring any view:
 
 ```
     public function list()
