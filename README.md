@@ -16,7 +16,7 @@ in $options['controller']. The tag / scope is closed by using the "end" method
 *   Inject CakePHP formatted data ($options['data']) into AngularJS controller's scope. 
 The data is stored into $scope._data so you can easily make:
 
-```html<li ng-repeat="model in _data">{{model.id}}</li>```
+```html <li ng-repeat="model in _data">{{model.id}}</li>```
 
 ... and use all the magic from AngularJs over that data.
 
