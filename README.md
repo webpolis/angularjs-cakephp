@@ -16,7 +16,9 @@ in $options['controller']. The tag / scope is closed by using the "end" method
 *   Inject CakePHP formatted data ($options['data']) into AngularJS controller's scope. 
 The data is stored into $scope._data so you can easily make:
 
-```html <li ng-repeat="model in _data">{{model.id}}</li>```
+```
+<li ng-repeat="model in _data">{{model.id}}</li>
+```
 
 ... and use all the magic from AngularJs over that data.
 
@@ -25,7 +27,7 @@ The data is stored into $scope._data so you can easily make:
 
 In our view we do:
 
-<code>
+```
     <?php
     echo $this->AngularJs->begin(
             array(
@@ -34,7 +36,7 @@ In our view we do:
             )
     );
     ?>
-</code>
+```
 
 We initialized AngularJS (by taking required files from Google CDN).
 We set a 'bootstrap' file, which is located under app/webroot/js/angular/bootstrap.js.
@@ -43,7 +45,7 @@ and '_controller' suffix (for sake of simplicity, is the only filename change re
 
 We then insert some AngularJs compatible markup code:
 
-<code>
+```
     <form ng-submit="saveAll()" >
         <div ng-init="list()">
             <div ng-repeat="(i,model) in _data">
@@ -53,12 +55,12 @@ We then insert some AngularJs compatible markup code:
         </div>
         <input type="submit" value="<?php echo __('Save'); ?>" />
     </form>
-</code>
+```
 
 In this example, i choose to save all records at once, so in my 'mymodel_controller.js' 
 i have:
 
-<code>
+```
     function MymodelController($scope, $resource){
         $scope.res_mymodel = $resource('/Mymodels/:action.json',{
             'action' : '@action'
@@ -87,7 +89,7 @@ i have:
     }
 
     MymodelController.$inject = ['$scope', '$resource'];
-</code>
+```
 
 You can do it however you want it; i choose to use the AngularJs 'resource' component to 
 transfer data but you can do your own AngularJs controller's logic.
@@ -99,7 +101,7 @@ go to your Cake's routes.php and add (if you don't have it :)
 
 So we can end by having the following "short" methods in our CakePHP controller:
 
-<code>
+```
     public function list()
     {
         $mymodels = $this->Mymodel->find('all');
@@ -113,7 +115,7 @@ So we can end by having the following "short" methods in our CakePHP controller:
         $this->set(compact('success'));
         $this->set('_serialize', array('success'));
     }
-</code>
+```
 
 Simple, right? That's why i wanted to share this small contribution to the big world of web development.
 
