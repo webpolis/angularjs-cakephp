@@ -57,6 +57,12 @@ We then insert some AngularJs compatible markup code:
     </form>
 ```
 
+And we stop the Helper from helping us:
+
+```
+<?php echo $this->AngularJs->end();?>
+```
+
 In this example, i choose to save all records at once, so in my 'mymodel_controller.js' 
 i have:
 
