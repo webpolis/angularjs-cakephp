@@ -123,4 +123,5 @@ Simple, right? That's why i wanted to share this small contribution to the big w
 Installation
 ============
 
-Place 'AngularJsHelper' in your Cake's 'app/View/Helper/' folder.
+Place 'AngularJsHelper' in your Cake's 'app/View/Helper/' folder and load the helper by adding 'AngularJs' to 
+the $helpers array in your controller.
