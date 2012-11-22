@@ -76,7 +76,7 @@ i have:
 
         $scope.saveAll = function(){
             var t = new $scope.res_settings(0);
-            t.labels = $scope._data;
+            t.mymodels = $scope._data;
             t.action = 'saveAll';
             t.$save(function(r){
                 if(r.success){
@@ -111,7 +111,7 @@ So we can end by having the following "short" methods in our CakePHP controller:
 
     public function saveAll()
     {
-        $success = $this->Setting->saveAll($this->request->data['labels']);
+        $success = $this->Setting->saveAll($this->request->data['mymodels']);
         $this->set(compact('success'));
         $this->set('_serialize', array('success'));
     }
