@@ -50,7 +50,7 @@ We then insert some AngularJs compatible markup code:
         <div ng-init="list()">
             <div ng-repeat="(i,model) in _data">
                 <label>{{model.Mymodel.id}}</label>
-                <input required ng-model="model.MyModel.title" type="text" />
+                <input required ng-model="model.Mymodel.title" type="text" />
             </div>
         </div>
         <input type="submit" value="<?php echo __('Save'); ?>" />
@@ -73,7 +73,7 @@ i have:
         });
 
         $scope.list = function(){
-            $scope.res_settings.query({
+            $scope.res_mymodel.query({
                 action: 'list'
             }, function(mymodels){
                 $scope._data = mymodels;
@@ -81,7 +81,7 @@ i have:
         }
 
         $scope.saveAll = function(){
-            var t = new $scope.res_settings(0);
+            var t = new $scope.res_mymodel(0);
             t.mymodels = $scope._data;
             t.action = 'saveAll';
             t.$save(function(r){
