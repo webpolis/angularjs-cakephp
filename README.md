@@ -39,7 +39,7 @@ In our view we do:
 ```
 
 We initialized AngularJS (by taking required files from Google CDN).
-We set a 'bootstrap' file, which is located under app/webroot/js/angular/bootstrap.js.
+We set a 'bootstrap' file, which is located in app/webroot/js/angular/bootstrap.js.
 We have placed our AngularJs controller in the same folder, but we avoid the '.js' extension 
 and '_controller' suffix (for sake of simplicity, is the only filename change request i do).
 
@@ -123,7 +123,7 @@ So we can end by having the following "short" methods in our CakePHP controller 
     }
 ```
 
-Simple, right? That's why i wanted to share this small contribution to the big world of web development.
+Simple, right? That's why i wanted to share this small contribution with the people.
 
 
 Installation
