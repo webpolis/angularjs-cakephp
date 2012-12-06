@@ -37,20 +37,32 @@ class AngularJsHelper extends HtmlHelper
         $this->_options = $options;
 
         echo $this->script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js',
-                array('inline' => false));
+                array('inline' => isset($inline) ? $inline : false));
         echo $this->script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js',
-                array('inline' => false));
+                array('inline' => isset($inline) ? $inline : false));
+
+        if (isset($extras)) {
+            foreach ($extras as $e) {
+                if (stristr($e, '.js')) {
+                    echo $this->script($e,
+                            array('inline' => isset($inline) ? $inline : false));
+                } else if (stristr($e, '.css')) {
+                    echo $this->css($e);
+                }
+            }
+        }
 
         if (isset($bootstrap)) {
             $this->_bootstrap = trim(strtolower(preg_replace('/^.*\/(.+)$/si',
                                     '$1', $bootstrap)));
-            echo $this->script($bootstrap, array('inline' => false));
+            echo $this->script($bootstrap,
+                    array('inline' => isset($inline) ? $inline : false));
         }
         if (isset($controller)) {
             $this->_controller = trim(strtolower(preg_replace('/^.*\/(.+)$/si',
                                     '$1', $controller)));
             echo $this->script($controller . '_controller',
-                    array('inline' => false));
+                    array('inline' => isset($inline) ? $inline : false));
         }
 
         if (!empty($this->_bootstrap))
@@ -59,10 +71,10 @@ class AngularJsHelper extends HtmlHelper
         if (!empty($this->_controller)) {
             $data = isset($data) ? json_encode($data) : 'null';
             $js = <<<JS
-   window.document.onload = function(e){
-            angular.element('#{$this->_id}').scope()._data = {$data};
-            angular.element('#{$this->_id}').scope().\$apply();
-    };
+            window.document.onload = function(e){
+                angular.element('#{$this->_id}').scope()._data = {$data};
+                angular.element('#{$this->_id}').scope().\$apply();
+            };
 JS;
             echo $this->scriptBlock($js);
             echo '<div ng-cloak ng-controller="' . ucwords($this->_controller) . 'Controller" id="' . $this->_id . '">';
@@ -78,6 +90,33 @@ JS;
 
         if (!empty($this->_bootstrap))
             echo '</div>';
+    }
+
+    /**
+     * Formats a PHP array into a compatible AngularJs list to be used in "select" element.
+     * The keys on the array will be stored in the "value" property while the values will be placed in the "name" property.
+     * 
+     * Example:
+     * <form ng-init="statuses=<?php echo $this->AngularJs->toAngularList($statuses);?>">
+     *  <select ng-model="model.status" ng-options="s.value as s.name for s in statuses"></select>
+     * </form>
+     * 
+     * @param type $arr
+     * @return type
+     */
+    public function toAngularList($arr = null)
+    {
+        $ret = null;
+        if (!empty($arr)) {
+            $tmp = array();
+            foreach ($arr as $k => $v) {
+                $tmp[] = array('name' => $v, 'value' => $k);
+            }
+            $ret = str_replace('"', "'",
+                    json_encode($tmp, JSON_NUMERIC_CHECK | JSON_OBJECT_AS_ARRAY));
+        }
+
+        return $ret;
     }
 
 }
