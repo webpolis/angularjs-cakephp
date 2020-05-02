@@ -1,7 +1,7 @@
 angularjs-cakephp
 =================
 
-by Nicolas Iglesias <nico@webpolis.com.ar>
+by Nicolas Iglesias <nfiglesias@gmail.com>
 
 
 AngularJs <-> CakePHP Adapter/Helper
